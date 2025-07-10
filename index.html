@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Retención Estudiantil SENA</title>
+    <!-- Fuentes según manual corporativo -->
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables de color según manual corporativo */
+        :root {
+            --sena-verde: #00A859;         /* Verde corporativo Pantone 3405C */
+            --sena-azul-oscuro: #00314D;   /* Azul oscuro Pantone 633C */
+            --sena-beige: #FFCE40;         /* Beige Pantone 7591C */
+            --sena-verde-oscuro: #385C57;  /* Verde oscuro Pantone 361C */
+            --sena-marron: #CB7766;        /* Marrón Pantone 5477C */
+            --sena-beige-claro: #FBFBE2;   /* Beige claro Pantone 635C */
+            --sena-azul-claro: #82DEF0;    /* Azul claro */
+            --sena-blanco: #FFFFFF;
+            --sena-negro: #000000;
+            --transition: all 0.4s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: linear-gradient(135deg, var(--sena-azul-oscuro), var(--sena-verde));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--sena-blanco);
+            overflow-x: hidden;
+            min-height: 100vh;
+            touch-action: manipulation;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Header Styles - Usando verde corporativo */
+        header {
+            background: rgba(0, 168, 89, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--sena-beige);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* LOGO MODIFICADO - SOLUCIÓN */
+        .logo {
+            background: url('./img/logoSenaProyect6.png') no-repeat center center;
+            background-size: contain;
+            width: 200px;
+            height: 80px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        /* LOGO MOBILE */
+        @media (max-width: 768px) {
+            .logo {
+                width: 180px;
+                height: 75px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                width: 150px;
+                height: 70px;
+            }
+        }
+        
+        /* LOGO TEXTO OCULTO */
+        .logo-text {
+            display: none;
+        }
+        
+        /* Navigation - Tipografía Work Sans */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--sena-blanco);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        nav a:hover, nav a.active {
+            background: var(--sena-beige);
+            color: var(--sena-azul-oscuro);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--sena-beige);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--sena-blanco);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .presentation-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        /* Secciones con fondo blanco y tipografía oscura según manual */
+        .section {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--sena-azul-oscuro);
+        }
+        
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--sena-verde);
+        }
+        
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--sena-verde);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--sena-blanco);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-title {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--sena-verde);
+        }
+        
+        .section-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: var(--sena-azul-oscuro);
+        }
+        
+        /* Cards Grid con colores corporativos */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background: linear-gradient(135deg, var(--sena-beige-claro), var(--sena-blanco));
+            border-radius: 15px;
+            padding: 2rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            color: var(--sena-azul-oscuro);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            background: linear-gradient(135deg, var(--sena-blanco), var(--sena-beige-claro));
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--sena-verde);
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--sena-verde);
+        }
+        
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .team-member {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--sena-azul-oscuro);
+        }
+        
+        .team-member:hover {
+            transform: scale(1.05);
+            background: var(--sena-blanco);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: var(--sena-verde);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;    
+            color: var(--sena-blanco);
+            border: 3px solid var(--sena-beige);
+        }
+
+        .member-team-photo-1 {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: url('./img/foto_perfil_jeferson.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        .member-team-photo-2 {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: url('./img/foto_sierra.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        .member-team-photo-3 {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: url('./img/foto_zuluaga.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        
+        .member-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--sena-azul-oscuro);
+        }
+        
+        .member-role {
+            font-size: 1rem;
+            color: var(--sena-verde);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        /* Database Visualization */
+        .db-visualization {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .db-table {
+            background: rgba(0, 49, 77, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+        
+        .db-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--sena-verde);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+            background: var(--sena-verde);
+            color: var(--sena-blanco);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: rgba(0, 168, 89, 0.05);
+        }
+        
+        /* Interactive Elements con colores corporativos */
+        .interactive-element {
+            background: rgba(255, 206, 64, 0.15);
+            border: 1px solid var(--sena-beige);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--sena-azul-oscuro);
+        }
+        
+        .interactive-element:hover {
+            background: rgba(255, 206, 64, 0.25);
+            transform: scale(1.02);
+        }
+        
+        .interactive-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--sena-verde);
+        }
+        
+        .interactive-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .interactive-element.active .interactive-content {
+            max-height: 500px;
+        }
+        
+        /* Footer con colores corporativos */
+        footer {
+            background: var(--sena-azul-oscuro);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+            border-top: 3px solid var(--sena-verde);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--sena-beige);
+            position: relative;
+            padding-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--sena-beige);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--sena-beige);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--sena-beige);
+            color: var(--sena-azul-oscuro);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--sena-azul-oscuro);
+            z-index: 2000;
+            padding: 2rem;
+            transition: left 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mobile-nav.active {
+            left: 0;
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close-menu {
+            background: none;
+            border: none;
+            color: var(--sena-blanco);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .mobile-nav-links a {
+            color: var(--sena-blanco);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .mobile-nav-links a:hover, .mobile-nav-links a.active {
+            background: var(--sena-beige);
+            color: var(--sena-azul-oscuro);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 992px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .cards-grid, .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .footer-links a {
+                justify-content: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                width: 120px;
+                height: 40px;
+            }
+            
+            .section {
+                padding: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .section-content {
+                font-size: 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .member-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 168, 89, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 168, 89, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 168, 89, 0); }
+        }
+        
+        /* Elementos gráficos según manual */
+        .sena-divider {
+            height: 4px;
+            background: linear-gradient(to right, var(--sena-verde), var(--sena-beige));
+            margin: 1.5rem 0;
+            border-radius: 2px;
+        }
+        
+        .sena-badge {
+            display: inline-block;
+            background: var(--sena-verde);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+        
+        .sena-highlight {
+            background: linear-gradient(120deg, rgba(255, 206, 64, 0.3), rgba(255, 206, 64, 0.1));
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <!-- Logo modificado - Solo imagen -->
+            <div class="logo"></div>
+            <!-- Texto oculto -->
+            <div class="logo-text">RETENCIÓN ESTUDIANTIL SENA</div>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#inicio" class="active">Inicio</a></li>
+                <li><a href="#proyecto">El Proyecto</a></li>
+                <li><a href="#objetivos">Objetivos</a></li>
+                <li><a href="#funcionalidades">Funcionalidades</a></li>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#tecnologia">Tecnología</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-header">
+            <div class="logo-text">RETENCIÓN ESTUDIANTIL</div>
+            <button class="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#inicio" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#proyecto"><i class="fas fa-project-diagram"></i> El Proyecto</a></li>
+            <li><a href="#objetivos"><i class="fas fa-bullseye"></i> Objetivos</a></li>
+            <li><a href="#funcionalidades"><i class="fas fa-cogs"></i> Funcionalidades</a></li>
+            <li><a href="#equipo"><i class="fas fa-users"></i> Equipo</a></li>
+            <li><a href="#tecnologia"><i class="fas fa-code"></i> Tecnología</a></li>
+        </ul>
+    </div>
+    <div class="overlay"></div>
+    
+    <!-- Main Content -->
+    <main>
+        <div class="presentation-container">
+            <!-- Hero Section -->
+            <section id="inicio" class="section floating">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h1 class="section-title">Sistema de Retención Estudiantil SENA</h1>
+                </div>
+                <div class="section-content">
+                    <p>Desarrollamos un sistema integral para mejorar la retención de aprendices en el Centro de Procesos Industriales y Construcción (CPIC) del SENA.</p>
+                    <p>Nuestra solución permite identificar tempranamente a los aprendices en riesgo de abandonar su formación, facilitando intervenciones oportunas para mejorar su permanencia y éxito académico.</p>
+                    
+                    <div class="sena-divider"></div>
+                    
+                    <div class="interactive-element pulse" onclick="this.classList.toggle('active')">
+                        <div class="interactive-title">
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>¿Por qué es importante?</h3>
+                        </div>
+                        <div class="interactive-content">
+                            <p>La deserción estudiantil es un problema crítico que afecta la formación técnica y tecnológica. Nuestro sistema aborda este desafío mediante:</p>
+                            <ul>
+                                <li>Seguimiento en tiempo real del progreso académico</li>
+                                <li>Identificación temprana de señales de riesgo</li>
+                                <li>Comunicación fluida entre aprendices e instructores</li>
+                                <li>Módulos de intervención basados en datos</li>
+                                <li>Estrategias de apoyo personalizadas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Project Details -->
+            <section id="proyecto" class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h2 class="section-title">Detalles del Proyecto</h2>
+                </div>
+                <div class="section-content">
+                    <p>El proyecto abarca el desarrollo de un sistema de software que permite la conexión entre todos los actores del proceso formativo: aprendices, instructores y profesionales de bienestar.</p>
+                    
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="card-title">Propósito</h3>
+                            <p>Disminuir el número de deserción en la etapa lectiva de los aprendices SENA Regional Caldas mediante intervenciones oportunas con el área de Bienestar del Aprendiz.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <h3 class="card-title">Alcance</h3>
+                            <p>Crear un sistema de software que mejore la prevención de la deserción distribuyendo eficientemente la comunicación entre el área profesional de Bienestar del Aprendiz y los aprendices.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="card-title">Personal Involucrado</h3>
+                            <p>Instructores, psicólogos de bienestar, aprendices y nuestro equipo de desarrollo trabajando coordinadamente para lograr los objetivos del proyecto.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="sena-divider"></div>
+                    
+                    <h3 style="margin-top: 2rem; color: var(--sena-verde);">Base de Datos del Proyecto</h3>
+                    <div class="db-visualization">
+                        <div class="db-table">
+                            <div class="db-title"><i class="fas fa-table"></i> Tabla: Aprendiz</div>
+                            <table>
+                                <tr>
+                                    <th>Campo</th>
+                                    <th>Tipo</th>
+                                    <th>Descripción</th>
+                                </tr>
+                                <tr>
+                                    <td>idAprendiz</td>
+                                    <td>INT</td>
+                                    <td>Identificador único del aprendiz</td>
+                                </tr>
+                                <tr>
+                                    <td>nombre</td>
+                                    <td>VARCHAR(50)</td>
+                                    <td>Nombre completo del aprendiz</td>
+                                </tr>
+                                <tr>
+                                    <td>email</td>
+                                    <td>VARCHAR(50)</td>
+                                    <td>Correo electrónico</td>
+                                </tr>
+                                <tr>
+                                    <td>telefono</td>
+                                    <td>VARCHAR(20)</td>
+                                    <td>Número de contacto</td>
+                                </tr>
+                                <tr>
+                                    <td>trimestre</td>
+                                    <td>VARCHAR(20)</td>
+                                    <td>Trimestre actual</td>
+                                </tr>
+                                <tr>
+                                    <td>fkIdGrupo</td>
+                                    <td>INT</td>
+                                    <td>Grupo al que pertenece</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div class="db-table">
+                            <div class="db-title"><i class="fas fa-table"></i> Tabla: Reporte</div>
+                            <table>
+                                <tr>
+                                    <th>Campo</th>
+                                    <th>Tipo</th>
+                                    <th>Descripción</th>
+                                </tr>
+                                <tr>
+                                    <td>idReporte</td>
+                                    <td>INT</td>
+                                    <td>Identificador único del reporte</td>
+                                </tr>
+                                <tr>
+                                    <td>fechaCreacion</td>
+                                    <td>DATETIME</td>
+                                    <td>Fecha de creación del reporte</td>
+                                </tr>
+                                <tr>
+                                    <td>descripcion</td>
+                                    <td>VARCHAR(255)</td>
+                                    <td>Descripción de la situación</td>
+                                </tr>
+                                <tr>
+                                    <td>direccionamiento</td>
+                                    <td>VARCHAR(60)</td>
+                                    <td>Área responsable</td>
+                                </tr>
+                                <tr>
+                                    <td>estado</td>
+                                    <td>VARCHAR(45)</td>
+                                    <td>Estado actual del reporte</td>
+                                </tr>
+                                <tr>
+                                    <td>fkIdAprendiz</td>
+                                    <td>INT</td>
+                                    <td>Aprendiz relacionado</td>
+                                </tr>
+                                <tr>
+                                    <td>fkIdUsuario</td>
+                                    <td>INT</td>
+                                    <td>Usuario que crea el reporte</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Objectives -->
+            <section id="objetivos" class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h2 class="section-title">Objetivos del Proyecto</h2>
+                </div>
+                <div class="section-content">
+                    <h3 style="color: var(--sena-verde); margin-bottom: 1rem;">Objetivo General</h3>
+                    <p>Desarrollar e implementar un sistema de software integral para mejorar la retención de aprendices en el CPIC, abordando eficientemente los desafíos asociados con la deserción estudiantil y optimizando las tasas de finalización de los programas.</p>
+                    
+                    <div class="sena-divider"></div>
+                    
+                    <h3 style="color: var(--sena-verde); margin: 2rem 0 1rem;">Objetivos Específicos</h3>
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <h3 class="card-title">Seguimiento de Asistencia</h3>
+                            <p>Diseñar un módulo que permita identificar patrones de ausencia y generar alertas automáticas para intervención temprana.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3 class="card-title">Sistema de Comunicación</h3>
+                            <p>Implementar un sistema que facilite la interacción entre aprendices, instructores y personal administrativo.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="card-title">Evaluación Continua</h3>
+                            <p>Crear un módulo para monitorear el rendimiento académico y detectar dificultades de aprendizaje.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <h3 class="card-title">Encuestas y Retroalimentación</h3>
+                            <p>Desarrollar un componente para recopilar información sobre satisfacción y necesidades de aprendices.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <h3 class="card-title">Gestión de Casos</h3>
+                            <p>Integrar un sistema que permita registrar y dar seguimiento a las intervenciones realizadas con cada aprendiz.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3 class="card-title">Recursos y Apoyo</h3>
+                            <p>Diseñar un módulo que ofrezca acceso a materiales de estudio, tutoriales y servicios de orientación en línea.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Features -->
+            <section id="funcionalidades" class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h2 class="section-title">Funcionalidades Principales</h2>
+                </div>
+                <div class="section-content">
+                    <p>El sistema incluye diversas funcionalidades diseñadas para abordar integralmente el problema de la deserción estudiantil:</p>
+                    
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3 class="card-title">Alertas Tempranas</h3>
+                            <p>Sistema que identifica a aprendices con mayor riesgo de deserción basado en múltiples indicadores.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="card-title">Seguimiento de Metas</h3>
+                            <p>Planificación y seguimiento de metas personales vinculadas al progreso en el programa.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3 class="card-title">Reportes y Análisis</h3>
+                            <p>Módulo que genera informes detallados sobre tendencias de retención y efectividad de intervenciones.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-comment-dots"></i>
+                            </div>
+                            <h3 class="card-title">Comunicación Directa</h3>
+                            <p>Canales de comunicación entre aprendices, instructores y profesionales de bienestar.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h3 class="card-title">Intervenciones Personalizadas</h3>
+                            <p>Seguimiento de estrategias de intervención adaptadas a cada caso particular.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <h3 class="card-title">Recursos Educativos</h3>
+                            <p>Acceso a materiales de apoyo, tutoriales y recursos para fortalecer el aprendizaje.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Team -->
+            <section id="equipo" class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2 class="section-title">Nuestro Equipo</h2>
+                </div>
+                <div class="section-content">
+                    <p>El desarrollo del proyecto está a cargo de un equipo multidisciplinario de aprendices SENA:</p>
+                    
+                    <div class="team-member">
+                            <div class="member-avatar">
+                                <!-- <i class="fas fa-user"></i> -->
+                                 <div class="member-team-photo-1"></div>
+                            </div>
+                            <h3 class="member-name">Jeferson Hernandez</h3>
+                            <div class="member-role">Desarrollador Full Stack</div>
+                            <p>Scrum - Desarrollo Frontend y Backend</p>
+                    </div>
+
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <!-- <i class="fas fa-user"></i> -->
+                                 <div class="member-team-photo-2"></div>
+                            </div>
+                            <h3 class="member-name">Jose Miguel Sierra</h3>
+                            <div class="member-role">Desarrollador Frontend</div>
+                            <p>Diseño y funcionalidad de interfaces</p>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <!-- <i class="fas fa-user"></i> -->
+                                 <div class="member-team-photo-3"></div>
+                            </div>
+                            <h3 class="member-name">Juan Manuel Zuluaga</h3>
+                            <div class="member-role">Scrum Master</div>
+                            <p>Desarrollo Backend</p>
+                        </div>
+                        
+                        <!-- <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 class="member-name">Jacobo Galvis</h3>
+                            <div class="member-role">Desarrollador Frontend</div>
+                            <p>Diseño y experiencia de usuario</p>
+                        </div> -->
+                    </div>
+                    
+                    <div style="margin-top: 2rem; background: rgba(0, 168, 89, 0.1); padding: 1.5rem; border-radius: 10px;">
+                        <h3 style="color: var(--sena-verde); margin-bottom: 1rem;"><i class="fas fa-user-tie"></i> Instructor</h3>
+                        <p><strong>Jose German Estrada Clavijo</strong></p>
+                        <p>Ficha: 2873711</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Technology -->
+            <section id="tecnologia" class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h2 class="section-title">Tecnología Utilizada</h2>
+                </div>
+                <div class="section-content">
+                    <p>Para el desarrollo del sistema utilizamos tecnologías modernas que garantizan un alto rendimiento y escalabilidad:</p>
+                    
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <h3 class="card-title">JavaScript</h3>
+                            <p>Lenguaje principal para la lógica del cliente y el servidor.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <h3 class="card-title">HTML5</h3>
+                            <p>Estructura semántica de las interfaces del sistema.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fab fa-css3-alt"></i>
+                            </div>
+                            <h3 class="card-title">CSS3</h3>
+                            <p>Estilos avanzados y diseño responsivo.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3 class="card-title">MySQL</h3>
+                            <p>Base de datos relacional para almacenar toda la información.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fab fa-php"></i>
+                            </div>
+                            <h3 class="card-title">PHP</h3>
+                            <p>Lógica del servidor y conexión con la base de datos.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fab fa-git-alt"></i>
+                            </div>
+                            <h3 class="card-title">Git</h3>
+                            <p>Control de versiones y trabajo colaborativo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-element" onclick="this.classList.toggle('active')" style="margin-top: 2rem;">
+                        <div class="interactive-title">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>¿Por qué esta tecnología?</h3>
+                        </div>
+                        <div class="interactive-content">
+                            <p>La selección de tecnologías se basó en los siguientes criterios:</p>
+                            <ul>
+                                <li><strong>Rendimiento:</strong> Tecnologías modernas y eficientes</li>
+                                <li><strong>Escalabilidad:</strong> Capacidad para crecer con las necesidades del SENA</li>
+                                <li><strong>Seguridad:</strong> Protección de datos sensibles de aprendices</li>
+                                <li><strong>Mantenibilidad:</strong> Facilidad para actualizar y mantener el sistema</li>
+                                <li><strong>Compatibilidad:</strong> Funcionamiento en diversos dispositivos y navegadores</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>RETENCIÓN ESTUDIANTIL</h3>
+                <p>Sistema para la prevención de la deserción de aprendices en el Centro de Procesos Industriales y Construcción (CPIC) del SENA.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#inicio"><i class="fas fa-arrow-right"></i> Inicio</a></li>
+                    <li><a href="#proyecto"><i class="fas fa-arrow-right"></i> El Proyecto</a></li>
+                    <li><a href="#objetivos"><i class="fas fa-arrow-right"></i> Objetivos</a></li>
+                    <li><a href="#funcionalidades"><i class="fas fa-arrow-right"></i> Funcionalidades</a></li>
+                    <li><a href="#equipo"><i class="fas fa-arrow-right"></i> Equipo</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Centro de Procesos Industriales y Construcción</a></li>
+                    <li><a href="tel:+573123456789"><i class="fas fa-phone"></i> +57 312 345 6789</a></li>
+                    <li><a href="mailto:retencion@cpic-sena.edu.co"><i class="fas fa-envelope"></i> retencion@cpic-sena.edu.co</a></li>
+                    <li><a href="#"><i class="fas fa-globe"></i> www.sena.edu.co</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2024 SENA - Centro de Procesos Industriales y Construcción. Todos los derechos reservados.
+            <p>Ficha: 2873711 | Instructor: Jose German Estrada Clavijo</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const overlay = document.querySelector('.overlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+        
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        
+        function closeMobileMenu() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Active link highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a, .mobile-nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Interactive elements
+        const interactiveElements = document.querySelectorAll('.interactive-element');
+        interactiveElements.forEach(element => {
+            element.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+        
+        // Floating animation for hero section
+        const heroSection = document.querySelector('#inicio');
+        setInterval(() => {
+            heroSection.classList.toggle('floating');
+        }, 3000);
+        
+        // Pulse animation for call to action
+        const pulseElement = document.querySelector('.pulse');
+        setInterval(() => {
+            pulseElement.classList.toggle('pulse');
+        }, 2000);
+        
+        // Mobile touch optimization
+        document.body.addEventListener('touchstart', function() {}, { passive: true });
+    </script>
+</body>
+</html>
