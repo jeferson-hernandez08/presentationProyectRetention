@@ -102,18 +102,20 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 0.8rem;
+            gap: 0.3rem;
         }
         
         nav a {
             color: var(--sena-blanco);
             text-decoration: none;
             font-weight: 600;
+            padding: 0.4rem 0.8rem; /* Menos padding para que estén más compactas */
             padding: 0.5rem 1rem;
             border-radius: 30px;
             transition: var(--transition);
             position: relative;
-            font-size: 1.0rem;
+            font-size: 0.85rem;
+            margin: 0 0.1rem; /* Espacio lateral mínimo */
         }
         
         nav a:hover, nav a.active {
@@ -697,9 +699,11 @@
                 <li><a href="#proyecto" data-section="proyecto">El Proyecto</a></li>
                 <li><a href="#objetivos" data-section="objetivos">Objetivos</a></li>
                 <li><a href="#problema" data-section="problema">Planteamiento al Problema</a></li>
+                <li><a href="#justificacion" data-section="justificacion">Justificación</a></li>
                 <li><a href="#funcionalidades" data-section="funcionalidades">Funcionalidades</a></li>
                 <li><a href="#equipo" data-section="equipo">Equipo</a></li>
                 <li><a href="#tecnologia" data-section="tecnologia">Tecnología</a></li>
+                <li><a href="#graficas" data-section="graficas">Gráficas</a></li>
             </ul>
             <!-- <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
@@ -846,6 +850,23 @@
                     <!-- <h3 style="color: var(--sena-verde); margin-bottom: 1rem;">Objetivo General</h3> -->
                     <!-- <p>Desarrollar e implementar un sistema de software integral para mejorar la retención de aprendices en el CPIC, abordando eficientemente los desafíos asociados con la deserción estudiantil y optimizando las tasas de finalización de los programas.</p> -->
                     <p>En el SENA, la formación de los aprendices es esencial para su desarrollo. Sin embargo, en el CPIC se presenta un alto índice de deserción, donde los aprendices abandonan sus programas sin justificación. Esto afecta la calidad formativa, disminuye la tasa de egresados y limita el control y seguimiento para tomar acciones oportunas.</p>
+
+                    <div class="sena-divider"></div>
+
+                    <div class="img-problem"></div>
+                </div>
+            </section>
+
+            <!-- justification -->
+            <section id="justificacion" class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h2 class="section-title">Justificación</h2>
+                </div>
+                <div class="section-content">
+                    <p>La deserción en el CPIC del SENA va en aumento por factores académicos, personales y familiares; Para enfrentar este reto, se propone un software que permita detectar riesgos, mejorar el seguimiento y facilitar intervenciones oportunas que fortalezcan la retención estudiantil.</p>
 
                     <div class="sena-divider"></div>
 
@@ -1004,6 +1025,23 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Graphics -->
+            <section id="graficas" class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h2 class="section-title">Gráficas</h2>
+                </div>
+                <div class="section-content">
+                    <p>A continuación se presentan algunas gráficas ilustrativas sobre la retención estudiantil y el impacto del sistema:</p>
+                    <!-- Ejemplo de gráfica con imagen -->
+                    <img src="./img/grafica_ejemplo.jpg" alt="Gráfica de Retención" style="width:100%;max-width:600px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);margin:2rem auto;display:block;">
+                    <!-- Puedes reemplazar la imagen por una gráfica dinámica si lo deseas -->
+                </div>
+            </section>
+
         </div>
     </main>
     
@@ -1069,6 +1107,9 @@
             <a href="#problema" class="nav-item" data-section="problema">
                 <i class="fas fa-exclamation-triangle"></i> Planteamiento al Problema
             </a>
+            <a href="#justificacion" class="nav-item" data-section="justificacion">
+                <i class="fas fa-balance-scale"></i> Justificación
+            </a>
             <a href="#funcionalidades" class="nav-item" data-section="funcionalidades">
                 <i class="fas fa-cogs"></i> Funcionalidades
             </a>
@@ -1077,6 +1118,9 @@
             </a>
             <a href="#tecnologia" class="nav-item" data-section="tecnologia">
                 <i class="fas fa-code"></i> Tecnología
+            </a>
+            <a href="#graficas" class="nav-item" data-section="graficas">
+                <i class="fas fa-chart-bar"></i> Gráficas
             </a>
         </div>
     </div>
