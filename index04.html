@@ -231,6 +231,15 @@
             margin-top: 1.5rem;
         }
 
+        .img-modelo-relacional {
+            width: 100%;
+            height: 300px;
+            background: url('./img/diagrama_modelo_relacional.png') no-repeat center center;
+            background-size: cover;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+        }
+
         /* Cards Grid con colores corporativos */
         .cards-grid {
             display: grid;
@@ -254,7 +263,7 @@
         
         .card:hover {
             transform: translateY(-8px);
-            background: linear-gradient(135deg, var(--sena-blanco), var(--sena-beige-claro));
+            background: linear-gradient(135deg, var(--sena-beige-claro), var(--sena-blanco));
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
         
@@ -687,6 +696,96 @@
                 padding-bottom: 60px;
             }
         }
+
+        /* Modo Oscuro */
+        body.dark-mode {
+            background: linear-gradient(135deg, #222, #00314D);
+            color: var(--sena-beige);
+        }
+        body.dark-mode header {
+            background: #222;
+            border-bottom: 3px solid var(--sena-beige);
+        }
+        body.dark-mode .section,
+        body.dark-mode .card,
+        body.dark-mode .team-member {
+            background: #222 !important;
+            color: #f3f3f3 !important;
+            border-color: #444 !important;
+        }
+        body.dark-mode .section-title,
+        body.dark-mode .card-title,
+        body.dark-mode h3,
+        body.dark-mode h2,
+        body.dark-mode h1 {
+            color: #FFCE40 !important; /* amarillo corporativo */
+        }
+        body.dark-mode .section-content,
+        body.dark-mode p,
+        body.dark-mode li,
+        body.dark-mode .member-role,
+        body.dark-mode .member-name {
+            color: #f3f3f3 !important; /* gris claro para texto */
+        }
+        body.dark-mode .section-icon,
+        body.dark-mode .member-avatar {
+            background: #FFCE40 !important;
+            color: #222 !important;
+        }
+        body.dark-mode .sena-divider {
+            background: linear-gradient(to right, #FFCE40, #00A859);
+        }
+        body.dark-mode nav a,
+        body.dark-mode .nav-item {
+            color: #FFCE40 !important;
+            background: rgba(34,34,34,0.7);
+        }
+        body.dark-mode nav a.active,
+        body.dark-mode .nav-item.active {
+            background: #FFCE40;
+            color: #222 !important;
+        }
+        body.dark-mode footer {
+            background: #222;
+            border-top: 3px solid #FFCE40;
+            color: #f3f3f3;
+        }
+        body.dark-mode .footer-links a {
+            color: #FFCE40;
+        }
+        body.dark-mode .social-links a {
+            background: #333;
+            color: #FFCE40;
+        }
+        body.dark-mode .social-links a:hover {
+            background: #FFCE40;
+            color: #222;
+        }
+        body.dark-mode .copyright {
+            color: #bdbdbd;
+        }
+        
+        /* Botón Modo Oscuro */
+        #darkModeBtn {
+            background: var(--sena-verde);
+            color: var(--sena-beige);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 1100;
+            transition: var(--transition);
+        }
+        
+        #darkModeBtn:hover {
+            background: var(--sena-beige);
+            color: var(--sena-azul-oscuro);
+        }
+
     </style>
 </head>
 <body>
@@ -714,6 +813,11 @@
                 <li><a href="#graficas" data-section="graficas">Gráficas</a></li>
             </ul>
         </nav>
+
+        <!-- Botón Modo Oscuro -->
+        <button id="darkModeBtn" style="background:var(--sena-azul-oscuro);color:var(--sena-beige);border:none;padding:0.6rem 1.2rem;border-radius:20px;cursor:pointer;font-weight:700;position:absolute;top:20px;right:30px;z-index:1100;">
+            <i class="fas fa-moon"></i>
+        </button>
     </header>
     
     <!-- Main Content -->
@@ -889,7 +993,43 @@
 
                     <div class="sena-divider"></div>
 
-                    <!-- <div class="img-problem"></div> -->
+                    <div class="section-content">    
+                        <div class="cards-grid">
+                            <div class="card">
+                                <div class="card-icon">
+                                    <i class="fas fa-hands-helping"></i>
+                                </div>
+                                <h3 class="card-title">Diagrama de Casos de Uso</h3>
+                                <div class="img-casos-de-uso"></div>
+                                
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <h3 class="card-title">Diagrama Modelo Relacional</h3>
+                                <div class="img-modelo-relacional"></div>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-icon">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <h3 class="card-title">Impacto Ambiental</h3>
+                                <p>Uso digital del sistema, reduce el consumo de papel y recursos físicos</p>
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-icon">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <h3 class="card-title">Impacto Tecnológico</h3>
+                                <p>Implementa software moderno, mejora procesos académicos con tecnología y fortalece la gestión educativa digital</p>
+                            </div>
+                        </div>
+                    </div>  
+
                 </div>
             </section>
 
@@ -906,43 +1046,41 @@
 
                     <div class="sena-divider"></div>
 
-                <div class="section-content">    
-                    <div class="cards-grid">
-                        <div class="card">
-                            <div class="card-icon">
-                                <i class="fas fa-hands-helping"></i>
+                    <div class="section-content">    
+                        <div class="cards-grid">
+                            <div class="card">
+                                <div class="card-icon">
+                                    <i class="fas fa-hands-helping"></i>
+                                </div>
+                                <h3 class="card-title">Impacto Social</h3>
+                                <p>Reduce la deserción, mejora la comunicación y el acompañamiento a los aprendices, favoreciendo su permanencia y éxito académico.</p>
                             </div>
-                            <h3 class="card-title">Social</h3>
-                            <p>Reduce la deserción, mejora la comunicación y el acompañamiento a los aprendices, favoreciendo su permanencia y éxito académico.</p>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-icon">
-                                <i class="fas fa-bullseye"></i>
+                            
+                            <div class="card">
+                                <div class="card-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <h3 class="card-title">Impacto Economico</h3>
+                                <p>Optimiza recursos institucionales, disminuye costos asociados a la deserción y mejora la eficiencia en la gestión educativa.</p>
                             </div>
-                            <h3 class="card-title">Seguimiento de Metas</h3>
-                            <p>Planificación y seguimiento de metas personales vinculadas al progreso en el programa.</p>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-icon">
-                                <i class="fas fa-chart-pie"></i>
+                            
+                            <div class="card">
+                                <div class="card-icon">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <h3 class="card-title">Impacto Ambiental</h3>
+                                <p>Uso digital del sistema, reduce el consumo de papel y recursos físicos</p>
                             </div>
-                            <h3 class="card-title">Reportes y Análisis</h3>
-                            <p>Módulo que genera informes detallados sobre tendencias de retención y efectividad de intervenciones.</p>
-                        </div>
-                        
-                        <div class="card">
-                            <div class="card-icon">
-                                <i class="fas fa-comment-dots"></i>
+                            
+                            <div class="card">
+                                <div class="card-icon">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <h3 class="card-title">Impacto Tecnológico</h3>
+                                <p>Implementa software moderno, mejora procesos académicos con tecnología y fortalece la gestión educativa digital</p>
                             </div>
-                            <h3 class="card-title">Comunicación Directa</h3>
-                            <p>Canales de comunicación entre aprendices, instructores y profesionales de bienestar.</p>
                         </div>
-                    </div>
-                </div>
-
-                    
+                    </div>  
                 </div>
             </section>
             
@@ -1256,6 +1394,17 @@
                 pulseElement.classList.toggle('pulse');
             }
         }, 2000);
+
+        // Modo Oscuro
+        const darkModeBtn = document.getElementById('darkModeBtn');
+        darkModeBtn.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            if(document.body.classList.contains('dark-mode')) {
+                darkModeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                darkModeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
     </script>
 </body>
 </html>
