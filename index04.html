@@ -37,7 +37,7 @@
             overflow-x: hidden;
             min-height: 100vh;
             touch-action: manipulation;
-            padding-bottom: 80px; /* Espacio para el menú inferior */
+            padding-bottom: 60px; /* Espacio para el menú inferior */
         }
         
         @keyframes gradientBG {
@@ -114,7 +114,7 @@
             border-radius: 30px;
             transition: var(--transition);
             position: relative;
-            font-size: 0.85rem;
+            font-size: 0.70rem;
             margin: 0 0.1rem; /* Espacio lateral mínimo */
         }
         
@@ -571,7 +571,7 @@
             font-weight: 600;
         }
         
-        /* ===== NUEVO MENÚ INFERIOR ===== */
+        /* ===== MENÚ INFERIOR MEJORADO ===== */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -581,7 +581,7 @@
             z-index: 2000;
             box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
             display: none;
-            padding: 10px 0;
+            padding: 8px 0;
             border-top: 3px solid var(--sena-verde);
         }
         
@@ -596,12 +596,12 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             transition: var(--transition);
@@ -631,8 +631,16 @@
         }
         
         .nav-items.active {
-            max-height: 500px;
-            padding: 15px 0;
+            max-height: 300px;
+            padding: 8px 0;
+            overflow-y: auto;
+        }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px;
+            padding: 0 8px;
         }
         
         .nav-item {
@@ -640,27 +648,25 @@
             align-items: center;
             color: white;
             text-decoration: none;
-            padding: 15px 20px;
+            padding: 8px 10px;
             transition: var(--transition);
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .nav-item:last-child {
-            border-bottom: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin: 2px;
         }
         
         .nav-item i {
-            margin-right: 15px;
-            font-size: 1.3rem;
-            width: 30px;
+            margin-right: 8px;
+            font-size: 1rem;
+            width: 24px;
             text-align: center;
         }
         
         .nav-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(3px);
         }
         
         .nav-item.active {
@@ -678,7 +684,7 @@
         /* Ajuste para no ocultar contenido */
         @media (max-width: 768px) {
             body {
-                padding-bottom: 70px;
+                padding-bottom: 60px;
             }
         }
     </style>
@@ -700,14 +706,13 @@
                 <li><a href="#objetivos" data-section="objetivos">Objetivos</a></li>
                 <li><a href="#problema" data-section="problema">Planteamiento al Problema</a></li>
                 <li><a href="#justificacion" data-section="justificacion">Justificación</a></li>
+                <li><a href="#diagramas" data-section="diagramas">Diagramas</a></li>
+                <li><a href="#diagramas" data-section="diagramas">Impactos</a></li>
                 <li><a href="#funcionalidades" data-section="funcionalidades">Funcionalidades</a></li>
                 <li><a href="#equipo" data-section="equipo">Equipo</a></li>
                 <li><a href="#tecnologia" data-section="tecnologia">Tecnología</a></li>
                 <li><a href="#graficas" data-section="graficas">Gráficas</a></li>
             </ul>
-            <!-- <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button> -->
         </nav>
     </header>
     
@@ -796,7 +801,6 @@
                 </div>
                 <div class="section-content">
                     <h3 style="color: var(--sena-verde); margin-bottom: 1rem;">Objetivo General</h3>
-                    <!-- <p>Desarrollar e implementar un sistema de software integral para mejorar la retención de aprendices en el CPIC, abordando eficientemente los desafíos asociados con la deserción estudiantil y optimizando las tasas de finalización de los programas.</p> -->
                     <p>Mejorar la retención de aprendices en el CPIC, permitiendo identificar a tiempo señales de riesgo de deserción mediante un seguimiento detallado y en tiempo real del progreso estudiantil.</p>
 
                     <div class="sena-divider"></div>
@@ -847,8 +851,6 @@
                     <h2 class="section-title">Planteamiento al Problema</h2>
                 </div>
                 <div class="section-content">
-                    <!-- <h3 style="color: var(--sena-verde); margin-bottom: 1rem;">Objetivo General</h3> -->
-                    <!-- <p>Desarrollar e implementar un sistema de software integral para mejorar la retención de aprendices en el CPIC, abordando eficientemente los desafíos asociados con la deserción estudiantil y optimizando las tasas de finalización de los programas.</p> -->
                     <p>En el SENA, la formación de los aprendices es esencial para su desarrollo. Sin embargo, en el CPIC se presenta un alto índice de deserción, donde los aprendices abandonan sus programas sin justificación. Esto afecta la calidad formativa, disminuye la tasa de egresados y limita el control y seguimiento para tomar acciones oportunas.</p>
 
                     <div class="sena-divider"></div>
@@ -857,7 +859,7 @@
                 </div>
             </section>
 
-            <!-- justification -->
+            <!-- Justification -->
             <section id="justificacion" class="section">
                 <div class="section-header">
                     <div class="section-icon">
@@ -870,7 +872,77 @@
 
                     <div class="sena-divider"></div>
 
-                    <div class="img-problem"></div>
+                    <!-- <div class="img-problem"></div> -->
+                </div>
+            </section>
+
+            <!-- Diagrams -->
+            <section id="diagramas" class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h2 class="section-title">Diagramas</h2>
+                </div>
+                <div class="section-content">
+                    <p>La deserción en el CPIC del SENA va en aumento por factores académicos, personales y familiares; Para enfrentar este reto, se propone un software que permita detectar riesgos, mejorar el seguimiento y facilitar intervenciones oportunas que fortalezcan la retención estudiantil.</p>
+
+                    <div class="sena-divider"></div>
+
+                    <!-- <div class="img-problem"></div> -->
+                </div>
+            </section>
+
+            <!-- Impacts -->
+            <section id="impactos" class="section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h2 class="section-title">Impactos de Proyecto</h2>
+                </div>
+                <div class="section-content">
+                    <p>El proyecto de retención busca reducir la deserción estudiantil mediante estrategias de acompañamiento y seguimiento, generando impactos positivos a nivel social, económico, ambiental y tecnológico dentro de la institución y la comunidad.</p>
+
+                    <div class="sena-divider"></div>
+
+                <div class="section-content">    
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h3 class="card-title">Social</h3>
+                            <p>Reduce la deserción, mejora la comunicación y el acompañamiento a los aprendices, favoreciendo su permanencia y éxito académico.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="card-title">Seguimiento de Metas</h3>
+                            <p>Planificación y seguimiento de metas personales vinculadas al progreso en el programa.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3 class="card-title">Reportes y Análisis</h3>
+                            <p>Módulo que genera informes detallados sobre tendencias de retención y efectividad de intervenciones.</p>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-comment-dots"></i>
+                            </div>
+                            <h3 class="card-title">Comunicación Directa</h3>
+                            <p>Canales de comunicación entre aprendices, instructores y profesionales de bienestar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                    
                 </div>
             </section>
             
@@ -935,7 +1007,6 @@
                     <div class="team-grid">
                         <div class="team-member">
                             <div class="member-avatar">
-                                <!-- <i class="fas fa-user"></i> -->
                                 <div class="member-team-photo-1"></div>
                             </div>
                             <h3 class="member-name">Jeferson Hernandez</h3>
@@ -945,7 +1016,6 @@
                         
                         <div class="team-member">
                             <div class="member-avatar">
-                                <!-- <i class="fas fa-user"></i> -->
                                  <div class="member-team-photo-2"></div>
                             </div>
                             <h3 class="member-name">Jose Miguel Sierra</h3>
@@ -955,7 +1025,6 @@
                         
                         <div class="team-member">
                             <div class="member-avatar">
-                                <!-- <i class="fas fa-user"></i> -->
                                  <div class="member-team-photo-3"></div>
                             </div>
                             <h3 class="member-name">Juan Manuel Zuluaga</h3>
@@ -1038,10 +1107,8 @@
                     <p>A continuación se presentan algunas gráficas ilustrativas sobre la retención estudiantil y el impacto del sistema:</p>
                     <!-- Ejemplo de gráfica con imagen -->
                     <img src="./img/grafica_ejemplo.jpg" alt="Gráfica de Retención" style="width:100%;max-width:600px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);margin:2rem auto;display:block;">
-                    <!-- Puedes reemplazar la imagen por una gráfica dinámica si lo deseas -->
                 </div>
             </section>
-
         </div>
     </main>
     
@@ -1058,27 +1125,6 @@
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            
-            <!-- <div class="footer-column">
-                <h3>Enlaces Rápidos</h3>
-                <ul class="footer-links">
-                    <li><a href="#inicio" class="footer-link" data-section="inicio"><i class="fas fa-arrow-right"></i> Inicio</a></li>
-                    <li><a href="#proyecto" class="footer-link" data-section="proyecto"><i class="fas fa-arrow-right"></i> El Proyecto</a></li>
-                    <li><a href="#objetivos" class="footer-link" data-section="objetivos"><i class="fas fa-arrow-right"></i> Objetivos</a></li>
-                    <li><a href="#funcionalidades" class="footer-link" data-section="funcionalidades"><i class="fas fa-arrow-right"></i> Funcionalidades</a></li>
-                    <li><a href="#equipo" class="footer-link" data-section="equipo"><i class="fas fa-arrow-right"></i> Equipo</a></li>
-                </ul>
-            </div> -->
-            
-            <!-- <div class="footer-column">
-                <h3>Contacto</h3>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Centro de Procesos Industriales y Construcción</a></li>
-                    <li><a href="tel:+573123456789"><i class="fas fa-phone"></i> +57 312 345 6789</a></li>
-                    <li><a href="mailto:retencion@cpic-sena.edu.co"><i class="fas fa-envelope"></i> retencion@cpic-sena.edu.co</a></li>
-                    <li><a href="#"><i class="fas fa-globe"></i> www.sena.edu.co</a></li>
-                </ul>
-            </div> -->
         </div>
         
         <div class="copyright">
@@ -1087,7 +1133,7 @@
         </div>
     </footer>
     
-    <!-- Nuevo Menú Inferior -->
+    <!-- Menú Inferior Mejorado -->
     <div class="bottom-nav">
         <div class="nav-toggle-container">
             <button class="nav-toggle" id="navToggle">
@@ -1095,33 +1141,41 @@
             </button>
         </div>
         <div class="nav-items" id="navItems">
-            <a href="#inicio" class="nav-item" data-section="inicio">
-                <i class="fas fa-home"></i> Inicio
-            </a>
-            <a href="#proyecto" class="nav-item" data-section="proyecto">
-                <i class="fas fa-project-diagram"></i> El Proyecto
-            </a>
-            <a href="#objetivos" class="nav-item" data-section="objetivos">
-                <i class="fas fa-bullseye"></i> Objetivos
-            </a>
-            <a href="#problema" class="nav-item" data-section="problema">
-                <i class="fas fa-exclamation-triangle"></i> Planteamiento al Problema
-            </a>
-            <a href="#justificacion" class="nav-item" data-section="justificacion">
-                <i class="fas fa-balance-scale"></i> Justificación
-            </a>
-            <a href="#funcionalidades" class="nav-item" data-section="funcionalidades">
-                <i class="fas fa-cogs"></i> Funcionalidades
-            </a>
-            <a href="#equipo" class="nav-item" data-section="equipo">
-                <i class="fas fa-users"></i> Equipo
-            </a>
-            <a href="#tecnologia" class="nav-item" data-section="tecnologia">
-                <i class="fas fa-code"></i> Tecnología
-            </a>
-            <a href="#graficas" class="nav-item" data-section="graficas">
-                <i class="fas fa-chart-bar"></i> Gráficas
-            </a>
+            <div class="nav-grid">
+                <a href="#inicio" class="nav-item" data-section="inicio">
+                    <i class="fas fa-home"></i> Inicio
+                </a>
+                <a href="#proyecto" class="nav-item" data-section="proyecto">
+                    <i class="fas fa-project-diagram"></i> El Proyecto
+                </a>
+                <a href="#objetivos" class="nav-item" data-section="objetivos">
+                    <i class="fas fa-bullseye"></i> Objetivos
+                </a>
+                <a href="#problema" class="nav-item" data-section="problema">
+                    <i class="fas fa-exclamation-triangle"></i> Problema
+                </a>
+                <a href="#justificacion" class="nav-item" data-section="justificacion">
+                    <i class="fas fa-balance-scale"></i> Justificación
+                </a>
+                <a href="#diagramas" class="nav-item" data-section="diagramas">
+                    <i class="fas fa-sitemap"></i> Diagramas
+                </a>
+                <a href="#impactos" class="nav-item" data-section="impactos">
+                    <i class="fas fa-bolt"></i> Impactos
+                </a>
+                <a href="#funcionalidades" class="nav-item" data-section="funcionalidades">
+                    <i class="fas fa-cogs"></i> Funcionalidades
+                </a>
+                <a href="#equipo" class="nav-item" data-section="equipo">
+                    <i class="fas fa-users"></i> Equipo
+                </a>
+                <a href="#tecnologia" class="nav-item" data-section="tecnologia">
+                    <i class="fas fa-code"></i> Tecnología
+                </a>
+                <a href="#graficas" class="nav-item" data-section="graficas">
+                    <i class="fas fa-chart-bar"></i> Gráficas
+                </a>
+            </div>
         </div>
     </div>
     
